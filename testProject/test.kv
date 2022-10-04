@@ -1,0 +1,275 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<MyScreenManager>:
+    transition: NoTransition()
+    canvas:
+        Color:
+            rgba: 0.3,0.9,0.5,0.94
+        Rectangle:
+            size: self.size
+    Password:
+        name: 'passwrd'
+    Menu:
+        name: 'menu'
+    EmployeeAdd:
+        name: 'add_Emp'
+    EmployeeRem:
+        name: 'rem_Emp'
+    Salary:
+        name: 'salary'
+    Advance:
+        name: 'advance'
+    Attendance:
+        name: 'attendance'
+
+<Password>:
+    AnchorLayout:
+        BoxLayout:
+            size_hint:0.4,0.1
+            orientation:"vertical"
+            Label:
+                color: 0,0,0,1
+                text:"PASSWORD:"
+                font_size: 0.04*root.height
+            TextInput:
+                id: pswrd
+                password: True
+                multiline:False
+                on_text_validate: 
+                    if self.text == root.password: \
+                    root.manager.current = 'menu'
+
+
+<Menu>:
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            pos_hint: {"center_x": 0.5}
+            size_hint: 1,0.3
+            color:0,0.5,0.3,0.9
+            text: root.title
+            haligh: 'center'
+            markup:True
+            font_size: 0.07*root.width
+
+
+        BoxLayout:
+            padding: "50dp"
+            orientation: "vertical"
+            AnchorLayout:
+                Button:
+                    size_hint: root.w,root.h
+                    text: 'Add Employee'
+                    font_size: 0.07*self.width
+                    on_release: root.manager.current = 'add_Emp'
+                
+            AnchorLayout:
+                Button:
+                    size_hint: root.w,root.h
+                    text: 'Remove Employee'
+                    font_size: 0.07*self.width
+                    on_release: root.manager.current = 'rem_Emp'
+
+            AnchorLayout:
+                Button:
+                    size_hint: root.w,root.h
+                    text: 'Calculate Salary'
+                    font_size: 0.07*self.width
+                    on_release: root.manager.current='salary'
+
+            AnchorLayout:
+                Button:
+                    size_hint: root.w,root.h
+                    text: 'Advance'
+                    font_size: 0.07*self.width
+                    on_release: root.manager.current='advance'
+
+            AnchorLayout:
+                Button:
+                    size_hint: root.w,root.h
+                    text: 'Attendance'
+                    font_size: 0.07*self.width
+                    on_release: root.manager.current='attendance'
+
+
+<EmployeeAdd>:
+
+
+<EmployeeRem>:
+    BoxLayout:
+        orientation:'vertical'
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.5
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'TFCODE:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    focus: True
+                    id:tfcode3
+                    multiline:False
+                    on_text_validate: name3.focus = True
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.5
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'Name:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    id:name3
+                    multiline:False
+                    on_text_validate: date3.focus = True
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.5
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'Date Left:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    id:date3
+                    multiline:False
+                    hint_text: "dd-mm-yyyy"
+                    on_text: date3.hint_text = ""
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.4
+                Label: 
+                    color: 1,0,0,1
+                    font_size: 0.07*self.width
+                    text:root.err
+                    halign:'center'
+
+        AnchorLayout:
+            anchor_x: 'right'
+            size_hint: 1, None
+            height:80
+            BoxLayout:
+                size_hint: None,None
+                height: 70
+                width: 300
+                spacing:20
+                padding:20
+                Button:
+                    text:'Submit'
+                    on_release: root.submit()
+                Button:
+                    text:'Back'
+                    on_release: root.manager.current = 'menu'
+                        
+<Salary>:
+
+<Advance>:
+    BoxLayout:
+        orientation: "vertical"
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.7
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'TFCODE:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    focus: True
+                    id:tfcode4
+                    multiline:False
+                    on_text_validate: name4.focus = True
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.7
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'Name:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    id:name4
+                    multiline:False
+                    on_text_validate: advance.focus = True
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.7
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'Amount:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    id:amount
+                    multiline:False
+                    on_text_validate: emi.focus = True
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.7
+                Label: 
+                    color: 0,0,0,1
+                    font_size: 0.07*self.width
+                    text:'Number of Months:'
+                    halign:'center'
+                TextInput:
+                    font_size: 0.07*self.width
+                    id:months
+                    text: '-'
+                    multiline:False
+                    write_tab:False
+
+        AnchorLayout:
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:0.3,0.4
+                Label: 
+                    color: 1,0,0,1
+                    font_size: 0.07*self.width
+                    text:root.err
+                    halign:'center'
+
+        AnchorLayout:
+            anchor_x: 'right'
+            size_hint: 1, None
+            height:80
+            BoxLayout:
+                size_hint: None,None
+                height: 70
+                width: 300
+                spacing:20
+                padding:20
+                Button:
+                    text:'Submit'
+                    on_release: root.submit()
+                Button:
+                    text:'Back'
+                    on_release: root.manager.current = 'menu'
+
+<Attendance>:
